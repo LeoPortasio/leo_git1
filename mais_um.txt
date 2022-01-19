@@ -1,2 +1,7 @@
 +1 +1 +1
-mais um  mais um
+<<<<<<< HEAD
+mais um 
+mais um
+=======
+mais um 
+>>>>>>> f485200bc1a9b2e249a5c6d7b3f23cb7499c8564
