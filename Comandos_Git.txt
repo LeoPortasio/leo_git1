@@ -1,0 +1,326 @@
+** Curso Udemy - Git e Github ** |
+_________________________________|
+
+
+
+➡️ criar repositório vazio
+
+	🔸️git init
+	
+ file - preferences - settings - files exclude
+ --> diretórios OCULTOS ex: .git
+ 
+    --> ex. de arquivos e diretórios dentro do .git (nunca apagar este arquivo)
+ 
+ config --> configurações do projeto
+ _______________________________________________________
+ 
+ 
+➡️ .gitignore
+
+ --> criar um novo arquivo chamado .gitignore
+
+ o git irá ignorar no projeto arquivos ou diretórios que constam neste arquivo
+ 
+ podemos incluir no .gitignore arquivos e diretórios, mas
+ também extensões de arquivos.
+ 
+ ex:
+ 
+ 🔸️*.txt
+ 🔸️**pasta/diretório
+ 
+________________________________________________________
+
+
+➡️ configurando usuário e email
+
+	🔸️git config user.name "nome usuário"
+	🔸️git config user.email "email@email.com"
+	
+ --> podemos utilizar a configuração de usuário e email de forma global utilizando o --global
+
+	🔸️git config --global user.name "nome usuário"
+	🔸️git config --global user.email "email@email.com"
+
+obs.: Utilizamos configuração global no nosso computador pessoal, nunca em computadores de utilidade pública.
+
+________________________________________________________
+
+
+➡️ adicionando arquivos para o monitoramento do git
+
+	🔸️git add nome_do_arquivo
+	
+	🔸️git add . 
+ --> adiciona todos os arquivos para monitoramento
+ 
+________________________________________________________
+ 
+ 
+➡️ commits
+ 
+ --> registra as alterações feitas nos arquivos, criando arquivos de log(hash ID) e um histórico de cada fase do projeto.
+ 
+ 	🔸️git commit -m "descrição das alterações no projeto"
+ _______________________________________________________
+ 
+
+➡️ histórico
+
+	🔸️git log --> default
+	
+	🔸️git log 	
+
+Obs.: se tiver muitos logs, podemos:
+
+/ - faz a procura de uma palavra e digite enter
+b - retorna
+q - para sair
+
+	🔸️git config core.pager cat	
+ --> altera de forma local o comportamento dos log, neste caso mostra todos os logs
+
+	🔸️git log -3
+ --> mostra os três últimos log's
+ 
+ 	🔸️git log --oneline
+ --> mostra os hash id's e a descrição de cada commit em uma linha
+ 
+ 	🔸️git log --before"2022-02-14"
+ 	🔸️git log --after"2022-02-14"
+ --> mostra os logs por datas
+ 
+ 	🔸️git log --author="nome"
+ -->mostra os logs daquel usuario específico
+ 	
+ 	🔸️git help log
+ --> no terminal podemos consultar os comandos de log
+ 
+ ______________________________________________________
+ 
+ 
+ ➡️ branch master e outros galhos
+ 
+ --> vai para o projeto naquele período do hash id que determinamos. Ficamos desatachado do projeto, ou seja em um novo branch(braço do nosso projeto, ou galho da nossa árvore)
+ 
+	🔸️git checkout nº_hash_id
+ --> vamos para outro branch
+ 
+ 	🔸️git checkout master
+ --> retornamos para o branch principal
+ 
+ 
+ _______________________________________________________
+ 
+ 
+ ➡️ comandos úteis
+ 
+ 	🔸️git mv nome_arquivo nome_arquivo_renomeado 
+ 	
+ 	(não precisa o comando add somente o commit)
+ 	
+ 	 	
+ 	🔸️git rm nome_arquivo_para_deletar
+	
+ obs.: podemos utilizar para diretóros também
+ 
+ 	
+ 	🔸️git diff --staged
+ --> mostra a diferença entre o arquivo atual com o mesmo arquivo em relação ao último commit
+ 
+ obs: podemos utilizar o diff para ver a diferença entre hash id's, assim:
+ 
+ 	🔸️git diff er34343..fd43434
+ 	
+ 
+ ________________________________________________________
+ 
+ 
+ ➡️ revertendo
+ 
+ --> commit incorreto:
+ 	🔸️git commit --amend -m "mensagem correta"
+ 
+ -->falta de um arquivo ou correção não inclusa no último commit
+ 	🔸️git commit --ament -m "descrição"
+ 	
+__________________________________________________________ 
+	
+ ➡️ tirando arquivos do staged
+ 
+ --> arquivo pronto para ser commitado, podemos voltar para o staged anterior.	
+ 	🔸️git restore --staged nome-arquivo
+ 	
+ 	
+ --> arquivo não adicionado, mas modificado, podemos voltar para o estágio antes das modificações	
+ 	🔸️git checkout nome_arquivo_modificado
+ 	
+ 	
+ -->vários arquivos não adicionados, mas modificados, podemos voltar para o estágio anterior às modificações 
+ 	🔸️git reset HEAD --hard
+ 		
+ 	
+ --> adicionamos e commitamos, podemos voltar para o estágio anterior descartando o último commit
+ 	🔸️git reset HEAD^ --hard
+ 	
+ __________________________________________________________
+ 
+ ➡️ branchs
+ --> uma ramificação do projeto, o tronco é o master!
+ 
+ 
+ 					  ---->base branch B 
+ ---------\-----------------------------/------------------->projeto(branch master)
+ 	   ---->base branch A
+ 	   
+ 	
+ 	🔸️git branch
+ --> mostra o branch que estamos trabalhando
+ 
+ 	🔸️git branch nome_branch
+ --> cria novo branch (criar nomes sugestivos)
+ 
+ 
+ 	🔸️git checkout nome_branch
+ --> vai de uma branch para outra
+ 
+ 
+ 	🔸️git checkout -b nome_branch
+ --> cria um novo branch e já vai para este novo branch		
+ 	
+
+	🔸️git branch -d nome_branch
+ --> apaga o branch se estiver mergeado com o branch master
+ 
+ 	🔸️git branch -D nome_branch
+ --> apaga o branch, mesmo sem realizar o merge
+ 
+ ___________________________________________________________
+ 
+ ➡️ merge
+ --> junta os branchs com o branch master
+ 
+ 	🔸️git merge nome_branch_para_juntar_com_branch_master
+ 
+ 
+ obs.: quando várias pessoas estão trabalhando no mesmo projeto,
+ podem ocorrer conflitos na hora de realizamos o merge. Então
+ devemos tratar estes conflitos.
+ 
+ 
+ ____________________________________________________________
+ 
+ ➡️ rebase
+ 
+--> remonta a base, ele é parecido com o merge.
+
+    Principal diferença entre os dois:
+    
+    no merge juntamos os branchs no momento do projeto atual;
+    
+    já o rebase junta os branchs na base e adiciona os commits do branch master
+posteriormente aos commits adicionados na base até aquele momento.   
+ 
+ 	🔸️git rebase nome_branch
+ 
+ ____________________________________________________________
+ 
+ ➡️ clone e push
+ 
+ --> clone: cria um repositório existente
+ 	
+ 	🔸️git clone caminho_repositório_para_clonar
+ 	
+ obs.: a partir da clonagem, devemos configurar o usuário e email, então estamos prontos para realizar as modificações ou criações de arquivos no projeto.
+ 
+       para enviar as modificações devemos utilizar o push
+       
+       
+       
+ --> push: envia as modificações do clone para o repositório de origin
+ 
+ obs.: somente podemos utilizar o push em um bare repository(github)
+ 
+	🔸️git push -u origin master 
+ 
+ _____________________________________________________________
+ 
+ ➡️ fetch e pull
+ 
+ --> fetch: baixa as atualizações do repositório remoto, porém não faz o merge,
+ permite fazer o rebase
+ 
+ 	🔸️git fetch
+ 	🔸️git rebase
+ 	
+ 
+ --> pull: junta o fetch com o rebase e faz a duas coisas com um único comando, realizando a junção dos arquivos do repositório central com o repositório clone
+ 
+ 	🔸️git pull
+ 
+ obs.: se abrir o nano é só salvar e sair (Crtl o + ctrl x)
+ 
+ _____________________________________________________________
+ 
+ ➡️ bare repository
+ --> quando temos outros desenvolvedores trabalhando em um mesmo clone de um repositório central, podemos simular um bare repository sem o github.
+ 
+ 	🔸️git init --bare
+ 
+ obs.: agora podemos utilizar o push, depois que fizermos as alterações ou criações de novos arquivos, adicionamos, comitamos e utillizamos o push para enviar tudo para o repositório central, com:
+ 	
+ 	🔸️git push 
+ 	
+ --> push realiza a junção dos arquivos do repositório clone para o repositório central
+ 
+ ______________________________________________________________
+ 
+ ➡️ tags - versões - partes integravéis individualmente
+ 
+ --> ao final do projeto junta-se todas as partes, criando um único software
+ 
+ obs.: no tags não realizamos commits e sim entregamos uma versão pronta para uso, assim podemos ir melhorando o software, lançando uma release, uma nova versão do software melhorada ou com novas funcionalidades.
+ 
+ 	🔸️git tag nome_tag (ex v1.0)
+ --> cria a tag com os arquivos do projeto
+ devemos realizar o push ou o pull conforme necessário, ou seja push pra quem envia e pull pra quem recebe.
+ 
+ 	🔸️git tag
+ --> mostra o nome da tag que estamos utilizando
+ 
+ 	🔸️git push origin v1.0
+ --> com esse comando estaremos enviando a tag com as modificações do projeto em si
+ 
+ 	
+ 	🔸️git switch -c nome_branch_tag
+ --> cria uma branch para alterações na tag em questão
+ 
+ 	🔸️git checkout master
+ 	🔸️git rebase nome_branch_tag
+ 	🔸️git tav v1.1
+ 	🔸️git push
+ 
+ _____________________________________________________________
+ 
+ ➡️ criando um repositório no github
+ 
+ --> new repository - nome - descrição - create
+ 
+ 	🔸️git init
+ 	🔸️git config user.name "nome usuario"
+ 	🔸️git config user.email"email@usuario.com"
+ 	🔸️git echo "# nome do projeto" >> README.md
+ 	🔸️git add .
+ 	🔸️git commit -m "primeiro commit"
+ 	🔸️git remote add origin https://github.com/LeoPortasio/nome_projeto.git
+ 	🔸️git push -u origin master
+ 	
+ ______________________________________________________________
+ 
+ 
+ 	
+ 	
+ 	
+ 
+
