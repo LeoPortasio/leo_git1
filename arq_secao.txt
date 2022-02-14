@@ -1,0 +1,4 @@
+arquivo criado na pasta(repositório) secao05 no VSCode, 
+do repositório clonado LeoPortasio/leo_git1 no Github,
+para testar o clone e o pull 
+
